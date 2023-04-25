@@ -1,6 +1,6 @@
 ## Course Outline:
 
-1. Intro to component
+1. [Intro to component](./1.%20Introductions/)
 2. Templates, Interpolation and Directives
 3. Data binding & pipes
 4. Building nested components
