@@ -29,6 +29,7 @@ Coordinates communication between the component's class and its templates and of
 
 ## 🔗 Interpolation:
 - One way binding
+    - from component class property to an element property
 - operation like concatation, calculation
 
 Template

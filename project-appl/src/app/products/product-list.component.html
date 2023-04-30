@@ -6,7 +6,9 @@
         <div class="row">
             <div class="col-md-2">Filter by:</div>
             <div class="col-md-4">
-                <input type="text">
+                <button ngbTooltip="Using filters: when used ngModel, then applied filters with this value by calling performFilter function inside setter method">?</button>
+                <input type='text' [(ngModel)]='listFilter'/>
+                <button ngbTooltip="2 way binding: Using ngModel and alos used getter and setter methods to retain the value in private">?</button>
             </div>
         </div>
         <div class="row">
@@ -16,21 +18,44 @@
         </div>
     </div>
     <div class="table-responsive">
+        <a class="text-nowrap" style="width: 8rem;" ngbTooltip="Using Interface: Products data type is declared using interface Iproduct {
+            productId: number;
+            productName: string;
+            productCode: string;
+            releaseDate: string;
+            description: string;
+            price: number;
+            starRating: number;
+            imageUrl: string;
+            };
+            product: IProduct[] = [];" >Strong Typing ?</a>
+        <p  class="font-weight-light">product list is using filteredList array created by applying filters: with *ngFor</p>
         <table class="table">
             <thead>
                 <tr>
                     <th>
-                        <button class="btn btn-primary">show Image</button>
+                        <button  class="btn btn-primary"  (click)="toggleEvent()">{{showImage? 'Hide': 'Show'}} Image</button>
+                        <button ngbTooltip="Event binding: From Template to component">?</button>
                     </th>
-                    <th>Products</th>
-                    <th>Code</th>
+                    <th>Products  <button ngbTooltip="Property binding: From Component to Template (all table rows data)" >?</button>
+                    </th>
+                    <th>Code  <button ngbTooltip="Using Custom Pipes: productCode is converted to without hypen @Pipe decorator" >?</button></th>
                     <th>Availibility</th>
-                    <th>Price</th>
+                    <th>Price  <button ngbTooltip="Using Pipes: price value is transfermed to USD and decimal values" >?</button></th>
                     <th>5 Star Rating</th>
                 </tr>
+                
             </thead>
-            <tbody>
-
+            <tbody *ngFor="let product of filteredProducts">
+                <!-- Property binding [Component <-> DOM] -->
+                <td> <img *ngIf="showImage" [src]='product.imageUrl' [title]='product.productName' [style.width.px]="imageWidth" [style.margin.px]='imageMargin'></td>
+                
+                <!-- Interpolation -->
+                <td>{{product.productName}}</td>
+                <td>{{product.productCode | lowercase | convertToSpaces:'-'}}</td>
+                <td>{{product.releaseDate }}</td>
+                <td>{{product.price | currency:'USD':'symbol':'1.2-2'}}</td>
+                <td>{{product.starRating}}</td>
             </tbody>
         </table>
     </div>
