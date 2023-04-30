@@ -23,7 +23,7 @@ export class ProductListComponent implements OnInit {
     set listFilter(value: string) {
         this._listFilter = value;
         console.log('in setter',value);
-        this.filteredProducts = this.performFilter(value);
+        this.filteredProducts = this.performFilter(value)
     }
 
     filteredProducts: IProduct[] = [];
@@ -97,5 +97,9 @@ export class ProductListComponent implements OnInit {
           console.log('in Onnit')
           // initailiase value
           this.listFilter = 'cart';
+      }
+
+      onRatingClicked(message: string): void {
+        this.pageTitle = 'Product List' + message;
       }
 }   

@@ -86,6 +86,7 @@ styleUrls:
     styles: ['./product-list.component.css']
 })
 ```
+---
 ## ☞ Component LifeCycle Hooks:
 ![](../img/img7.png)
 
@@ -114,7 +115,7 @@ styleUrls:
     - here we we use ng prefix to OnInit : ngOnInit, we dont need to implement any lifecycle hooks like, `implements OnInit`
 2. `Onchanges`: Perform action after change to input properties
 3. `OnDestroy`: Perform cleanUp
-
+---
 ### ☞ Custom Pipes:
 - Create a class that implements PipeTransform Method.
 - Then, add the pipe to the declarations array of angular module.
@@ -147,7 +148,7 @@ transform(value: string, character: string): string {
 
 - here, product.productCode will be taken as a value and '-' will be taken as character to transform method arguement
 - we also need to declare this in angular module file to be able to use component
-
+---
 ### ☞ Getters & Setters:
 
 ```
@@ -170,7 +171,7 @@ set amount(value: number) {
 this.amount = 200;
 console.log(this.amount);
 ```
-
+---
 ## ☞ Filtering & Arrow Functions:
 ### Filtering a List:
 - Filter methods creats a new array, then it compare the value with original array eithee to include or not in the new array and then return new array containing omly the filtered products.
