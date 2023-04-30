@@ -27,7 +27,7 @@
 
 ### ☞ Passing data to nested component(@Input):
 ![](../img/img9.png)
-- Nested component receives info from its container using @input properties
+- Nested component receives info from its container using @input prope  rties
 - nested component outputs the information back to container by emitting events. using output properties.
 
 star.component.ts
@@ -53,13 +53,13 @@ star.component.ts
 ```
 ...
 @Input() rating: number;
-@Output() notify: EventEmmiter<string> = new EventEmmitter<string>();
+@Output() ratingClicked: EventEmmiter<string> = new EventEmmitter<string>();
 onClick() {
-    this.notify.emit('clicked!');
+    this.ratingClicked.emit('clicked!');
 }
 ...
 ```
-- Added notify event here,
+- Added ratingClicked event here,
 
 star.component.html
 ```
@@ -74,14 +74,16 @@ star.component.html
 product-list.component.html
 ```
 <pm-start [rating]='product.startRating'
-           (rating)='onNotify($event)'></pm-star>
+           (ratingClicked)='onRatingClicked($event)'></pm-star>
 ```
 - here, we do event binding to get the data from nested component
 
 product-list.component.ts
 ```
 export class ProductListComponent {
-    onNotify(message: string): void {}
+    onRatingClicked(message: string): void {
+        this.pageTitle = 'Product List' + message;
+      }
 }
 ```
 - here we use the data to display in the parent component emitted by the nested 
