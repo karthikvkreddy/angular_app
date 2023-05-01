@@ -22,7 +22,7 @@ Component:
         ```
         - But it is a instance ot local, so we cannot share the data or other resource
     
-    2. Register the service with angular, angular then creates the instance of service class, called a `singleton`. Specially angular provides built-in injector.We register services with angular injector, which maintains a container of created service instances. It uses `dependency injection` concept.
+    2. `Register the service with angular`, angular then creates the instance of service class, called a `singleton`. Specially angular provides built-in injector.We register services with angular injector, which maintains a container of created service instances. It uses `dependency injection` concept.
         ```
         constructor(private myService) {}
         ```
@@ -63,3 +63,45 @@ export class ProductService {
 - Next, we need to add decorator for this service metadata.
 - Lastly, we import what we need.
 
+### Registering a services (WHEN TO USE WHAT?):
+1. Using root injector
+    ```
+    import { Injectable } from '@angular/core'
+
+    @Injectable({
+        providedIn: 'root'                          # decides root injector and can we accessable from any component or other service
+    })
+    export class ProductService {
+        getProducts(): IProduct[] {
+
+        }
+    }
+    ```
+2. Component Injector:
+    ```
+    @Component({
+        templateUrl: './product-list.component.html'
+        providers: [ProductService]
+    })
+
+    export class ProductListComponent {}
+    ```
+![](../img/img10.png)
+
+### ☞ Injecting the service :
+```
+    @Component({
+        templateUrl: './product-list.component.html'
+        providers: [ProductService]
+    })
+    export class ProductListComponent {
+        constructor(private productService: ProductService) {
+            this._productService  = productService;
+        }
+    }
+```
+- Using contructor. Every class as a constructor that is executed when the instance of the class is created.
+- if there is not explicit constructor is defined for the class, we can use implicit constructor is used.
+- But, if we want to inject dependencies such as an instance of a service,we need explicit constructor.
+- contsructor is basically used for initialisation, but not for he code that takes time for execution.
+- add access medifier as private.
