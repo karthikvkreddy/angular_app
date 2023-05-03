@@ -114,6 +114,36 @@ styleUrls:
     ```
     - here we we use ng prefix to OnInit : ngOnInit, we dont need to implement any lifecycle hooks like, `implements OnInit`
 2. `Onchanges`: Perform action after change to input properties
+    - Used with nested component, when used child component in parent component.
+    - So, whenever something changes in child component, the functions inside OnChanges will be executed.
+    
+    
+    start.component.ts
+    ```
+    @Input() rating: number = 0;
+    ngOnChanges(): void {
+        this.cropWidth = this.rating * 75/5;
+    }
+    ```
+    
+    - when we receive data from parent to child, this cropWidth will be changes based on the input field.
+    
+    start.component.html
+    ```
+    <div class="crop"
+     [style.width.px]="cropWidth"
+     [title]="rating"
+     (click)='onClick()'>
+     <div style="width: 75px">
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+      </div>
+    </div>
+    ```
+    
 3. `OnDestroy`: Perform cleanUp
 ---
 ### ☞ Custom Pipes:
